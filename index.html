@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My AR Visiting Card</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Basic SEO / preview -->
+  <meta name="description" content="Interactive AR visiting card profile." />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Camera background -->
+  <video id="camera" autoplay playsinline muted></video>
+
+  <!-- Dark overlay so text is readable -->
+  <div class="overlay"></div>
+
+  <!-- Floating profile card -->
+  <div id="card">
+    <div class="avatar-circle">
+      <!-- Optional profile image -->
+      <!-- replace with your own image URL or remove background-image in CSS -->
+    </div>
+    <h1 class="name">Your Name</h1>
+    <p class="title">Your Role / Founder, QNAS</p>
+
+    <p class="tagline">
+      Short one-line about you or your startup. Keep it punchy.
+    </p>
+
+    <div class="links">
+      <!-- Replace # with your real links -->
+      <a href="mailto:youremail@example.com" target="_blank">Email</a>
+      <a href="https://www.linkedin.com/in/your-id" target="_blank">LinkedIn</a>
+      <a href="https://your-website.com" target="_blank">Website</a>
+    </div>
+  </div>
+
+  <!-- Small message at bottom -->
+  <div class="hint">
+    Move your phone slightly – the card will react ✨
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,80 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>My AR 3D Avatar Card</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Interactive AR visiting card with 3D avatar." />
+  <head>
+    <meta charset="UTF-8" />
+    <title>Marker AR Business Card</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Marker-based AR visiting card with 3D avatar and details." />
 
-  <link rel="stylesheet" href="style.css" />
+    <!-- A-Frame -->
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 
-  <!-- model-viewer for 3D avatar -->
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-</head>
-<body>
-  <!-- Camera background -->
-  <video id="camera" autoplay playsinline muted></video>
+    <!-- AR.js (A-Frame version) -->
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
 
-  <!-- Dark overlay -->
-  <div class="overlay"></div>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+      }
 
-  <!-- Main 3D + details card -->
-  <div id="card">
-    <div class="card-inner">
-      <!-- LEFT: 3D Avatar -->
-      <div class="avatar-3d-wrap">
-        <model-viewer
-          src="https://models.readyplayer.me/69356ace14ff70500078c52a.glb"
-          alt="3D avatar"
-          autoplay
-          auto-rotate
-          camera-controls
-          exposure="1.1"
-          shadow-intensity="0.6"
-          disable-zoom
-        ></model-viewer>
-      </div>
+      /* Simple loading message */
+      #loading {
+        position: fixed;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        font-size: 0.8rem;
+      }
+    </style>
+  </head>
 
-      <!-- RIGHT: Text details -->
-      <div class="details">
-        <h1 class="name">Your Name</h1>
-        <p class="title">Founder, QNAS</p>
+  <body>
+    <div id="loading">Point your camera at the Hiro marker to see the AR card ✨</div>
 
-        <p class="tagline">
-          One punchy line about who you are / what QNAS does.
-        </p>
+    <!-- AR.js scene -->
+    <a-scene
+      embedded
+      vr-mode-ui="enabled: false"
+      renderer="logarithmicDepthBuffer: true; antialias: true"
+      arjs="sourceType: webcam; debugUIEnabled: false;"
+    >
+      <!-- Marker: using built-in Hiro marker -->
+      <!-- You'll print this marker and put it on/near your visiting card -->
+      <a-marker preset="hiro">
+        <!-- 3D Avatar -->
+        <a-entity
+          gltf-model="url(https://models.readyplayer.me/69356ace14ff70500078c52a.glb)"
+          position="-0.3 0 0"
+          rotation="0 90 0"
+          scale="0.45 0.45 0.45"
+        >
+        </a-entity>
 
-        <div class="info-list">
-          <div class="info-item">
-            <span class="label">Email</span>
-            <a href="mailto:youremail@example.com" target="_blank">
-              youremail@example.com
-            </a>
-          </div>
+        <!-- Details card (3D panel) -->
+        <a-entity position="0.6 0 0">
+          <!-- Background panel -->
+          <a-plane
+            position="0 0.2 0"
+            width="0.9"
+            height="0.6"
+            color="#111122"
+            opacity="0.9"
+            material="side: double;"
+            radius="0.05"
+          ></a-plane>
 
-          <div class="info-item">
-            <span class="label">LinkedIn</span>
-            <a href="https://www.linkedin.com/in/your-id" target="_blank">
-              linkedin.com/in/your-id
-            </a>
-          </div>
+          <!-- Name -->
+          <a-text
+            value="Your Name"
+            color="#FFFFFF"
+            position="-0.38 0.42 0.01"
+            width="1.4"
+            wrap-count="16"
+          ></a-text>
 
-          <div class="info-item">
-            <span class="label">Website</span>
-            <a href="https://your-website.com" target="_blank">
-              your-website.com
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+          <!-- Title -->
+          <a-text
+            value="Founder, QNAS"
+            color="#CCCCFF"
+            position="-0.38 0.30 0.01"
+            width="1.4"
+            wrap-count="24"
+          ></a-text>
 
-  <!-- Bottom hint -->
-  <div class="hint">
-    Move your phone a bit – the 3D avatar and card will tilt like AR ✨
-  </div>
+          <!-- Tagline -->
+          <a-text
+            value="One punchy line about QNAS or what you do."
+            color="#EEEEFF"
+            position="-0.38 0.15 0.01"
+            width="1.4"
+            wrap-count="24"
+          ></a-text>
 
-  <script src="script.js"></script>
-</body>
+          <!-- Email -->
+          <a-text
+            value="Email: youremail@example.com"
+            color="#FFFFFF"
+            position="-0.38 -0.02 0.01"
+            width="1.4"
+            wrap-count="28"
+          ></a-text>
+
+          <!-- LinkedIn -->
+          <a-text
+            value="LinkedIn: linkedin.com/in/your-id"
+            color="#FFFFFF"
+            position="-0.38 -0.16 0.01"
+            width="1.4"
+            wrap-count="28"
+          ></a-text>
+
+          <!-- Website -->
+          <a-text
+            value="Website: your-website.com"
+            color="#FFFFFF"
+            position="-0.38 -0.30 0.01"
+            width="1.4"
+            wrap-count="28"
+          ></a-text>
+        </a-entity>
+      </a-marker>
+
+      <!-- Camera -->
+      <a-entity camera></a-entity>
+    </a-scene>
+
+    <script>
+      // Hide loading text after a few seconds
+      setTimeout(() => {
+        const loading = document.getElementById("loading");
+        if (loading) loading.style.display = "none";
+      }, 7000);
+    </script>
+  </body>
 </html>

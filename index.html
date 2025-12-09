@@ -9,10 +9,10 @@
       content="Marker-based AR visiting card with 3D avatar and QNAS contact details."
     />
 
-    <!-- A-Frame core -->
+    <!-- A-Frame -->
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 
-    <!-- AR.js for A-Frame (marker-based AR) -->
+    <!-- AR.js for marker-based AR -->
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
 
     <style>
@@ -30,33 +30,33 @@
       renderer="logarithmicDepthBuffer: true; antialias: true"
       arjs="sourceType: webcam; debugUIEnabled: false;"
     >
-      <!-- Hiro marker (your QR with Hiro in the middle still works as long as the inner Hiro pattern is visible) -->
+      <!-- Hiro marker -->
       <a-marker preset="hiro">
-        <!-- Bigger avatar, facing forward -->
+        <!-- BIG avatar, facing forward -->
         <a-entity
           gltf-model="url(https://models.readyplayer.me/69356ace14ff70500078c52a.glb)"
           position="0 0 0"
           rotation="0 0 0"
-          scale="0.8 0.8 0.8"
+          scale="1.6 1.6 1.6"
         >
         </a-entity>
 
-        <!-- Info texts on the right; NO background plane (no black rectangle) -->
-        <a-entity position="1.2 0 0">
-          <!-- QNAS logo floating on the right -->
+        <!-- Info group on the right (NO planes, only text + logo) -->
+        <a-entity position="1.4 0 0">
+          <!-- Logo -->
           <a-image
             src="assets/qnas.png"
-            position="0 0.55 0.02"
-            width="0.7"
-            height="0.26"
+            position="0 0.6 0.02"
+            width="0.8"
+            height="0.3"
           ></a-image>
 
           <!-- Role -->
           <a-text
             value="Founder / CEO"
             color="#FFFFFF"
-            position="-0.6 0.33 0.02"
-            width="2.3"
+            position="-0.7 0.35 0.02"
+            width="2.6"
             wrap-count="28"
             shader="msdf"
             font="https://cdn.aframe.io/fonts/Roboto-msdf.json"
@@ -66,8 +66,8 @@
           <a-text
             value="📞  +91 72005 59313"
             color="#FFFFFF"
-            position="-0.6 0.16 0.02"
-            width="2.3"
+            position="-0.7 0.18 0.02"
+            width="2.6"
             wrap-count="28"
             shader="msdf"
             font="https://cdn.aframe.io/fonts/Roboto-msdf.json"
@@ -77,8 +77,8 @@
           <a-text
             value="✉  moh@nsd.com"
             color="#FFFFFF"
-            position="-0.6 -0.01 0.02"
-            width="2.3"
+            position="-0.7 0.01 0.02"
+            width="2.6"
             wrap-count="28"
             shader="msdf"
             font="https://cdn.aframe.io/fonts/Roboto-msdf.json"
@@ -88,8 +88,8 @@
           <a-text
             value="🌐  qnas.in"
             color="#FFFFFF"
-            position="-0.6 -0.18 0.02"
-            width="2.3"
+            position="-0.7 -0.16 0.02"
+            width="2.6"
             wrap-count="28"
             shader="msdf"
             font="https://cdn.aframe.io/fonts/Roboto-msdf.json"
